@@ -1,0 +1,35 @@
+# Laravel folders to ignore
+/node_modules
+/vendor
+/storage/*.key
+/storage/app/*
+!storage/app/public
+/storage/framework/*
+/storage/logs/*
+
+# Dependency files to be ignored (they'll be installed during build)
+composer.lock
+package-lock.json
+
+# Environment and config
+.env
+.env.*
+!.env.example
+
+# Docker / Git / OS / IDE
+.dockerignore
+.git
+.gitignore
+.idea
+.vscode
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.log
+
+# Tests and documentation
+/tests
+/phpunit.xml
+/data
+README.md

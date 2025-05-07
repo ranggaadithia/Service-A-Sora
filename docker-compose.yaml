@@ -8,7 +8,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: mybackend
+    container_name: service_a_project_sora
     ports:
       - "8000:8000"
     volumes:
@@ -16,9 +16,9 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=mypgdb
+      - DB_HOST=service_a_db
       - DB_PORT=5432
-      - DB_DATABASE=test-db
+      - DB_DATABASE=auth-db
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
     networks:
@@ -28,7 +28,7 @@ services:
 
   db:
     image: postgres:15
-    container_name: mypgdb
+    container_name: service_a_db
     ports:
       - "5432:5432"
     volumes:
@@ -36,7 +36,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=test-db
+      - POSTGRES_DB=auth-db
     networks:
       - application
     healthcheck:
