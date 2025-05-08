@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: laravel
-          image: service-a-app:latest
+          image: ranggaadithia/service-a-app:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
