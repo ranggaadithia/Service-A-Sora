@@ -30,3 +30,17 @@ spec:
       volumes:
         - name: db-storage
           emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a-db
+spec:
+  selector:
+    app: service-a-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP

@@ -36,3 +36,18 @@ spec:
               php artisan key:generate && \
               php artisan migrate && \
               php artisan serve --host=0.0.0.0 --port=8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a-app
+spec:
+  selector:
+    app: service-a-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: NodePort
+---
