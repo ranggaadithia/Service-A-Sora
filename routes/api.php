@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/users', function (Request $request) {
-    $users = \App\Models\User::all();
-    return response()->json($users);
+    $emails = User::pluck('email'); // hanya ambil kolom email
+    return response()->json($emails);
 });
 
 Route::post('/login', function (Request $request) {
