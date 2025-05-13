@@ -29,6 +29,13 @@ spec:
               value: postgres
             - name: DB_PASSWORD
               value: postgres
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
           command: ["/bin/sh", "-c"]
           args:
             - |
@@ -50,4 +57,23 @@ spec:
       port: 8000
       targetPort: 8000
   type: ClusterIP
+
 ---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: service-a-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: service-a-app
+  minReplicas: 1
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
